@@ -153,7 +153,7 @@ If you are using Hoffman2 build python, like most python builds from source,  wh
 
 ### Batch job
 
-::: {style="font-size: 0.85em" }
+::: {style="font-size: 0.75em" }
 
 You can create a job script to run python as a Batch job
 
@@ -180,7 +180,17 @@ Then we will submit this job
 qsub foopy.job
 ```
 
+::: {.callout-note}
+
+See that this job script used one core `-pe shared 1`. 
+
+You can request more cores with modifing `-pe`, but your Python code **MUST** also me modified for your Python code to actually use multiple.
+
+See our workshop on [Big Data](https://github.com/ucla-oarc-hpc/WS_BigDataOnHPC) for some ways to parallelize your Python code.
+
 :::
+:::
+
 
 ## Python Package Installation
 
@@ -394,7 +404,7 @@ Rscript fooR.R
 
 ### Batch job
 
-::: {style="font-size: 0.85em" }
+::: {style="font-size: 0.75em" }
 
 You can create a job script to run R as a Batch job
 
@@ -422,6 +432,13 @@ Then we will submit this job
 qsub fooR.job
 ```
 
+::: {.callout-note}
+
+Like the python job before, this request one core.
+
+There are ways to parallelize your R code, like [snow](https://cran.r-project.org/web/packages/snow/index.html), [sparkR](https://spark.apache.org/docs/latest/sparkr.html), [parallel](https://www.rdocumentation.org/packages/parallel/versions/3.6.2)
+
+:::
 :::
 
 
@@ -530,9 +547,9 @@ If you decided to use this new directory to store you R packages, make sure that
 
 ## Anaconda
 
-::: {style="font-size: 0.80em" }
+::: {style="font-size: 0.75em" }
 
-Anaconda is a very popular :snake: Python and R distribution. This is a great option for simplifing package management and piplines. Hoffman2 does have Anaconda installed, from which, the user can create their own conda environments.
+Anaconda is a very popular  Python and R distribution. This is a great option for simplifing package management and piplines. Hoffman2 does have Anaconda installed, from which, the user can create their own conda environments.
 
 TO create a environment, you will first need to load the Anaconda module
 
@@ -540,8 +557,11 @@ TO create a environment, you will first need to load the Anaconda module
 module load anaconda3/2020.11
 ```
 
-This will load anaconda into your env. There is NO need to load a python module, since you will create and run python in your local environment.
+::: {.callout-warning}
 
+There is NO need to load other python or R module. Your anaconda environment will have a build of python and/or R so adding other modules may have conflicts.
+
+:::
 ::: {.callout-note}
 
 There is NO need to run conda init. Anaconda is environment is already load when you run the conda.sh script. When you run conda init, it will modify your .bashrc file and possibly break your created env.
